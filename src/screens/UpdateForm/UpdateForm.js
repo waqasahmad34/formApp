@@ -3,6 +3,7 @@ import { Text, View, Image, StatusBar, TouchableOpacity, ScrollView, Dimensions 
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { Header, Left, Body, Right, Title, Form, Item, Input, Label } from 'native-base';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { ifIphoneX } from 'react-native-iphone-x-helper';
 
 const { height, width } = Dimensions.get('window');
 class UpdateForm extends Component {
@@ -245,29 +246,46 @@ class UpdateForm extends Component {
 							</TouchableOpacity>
 						</View>
 
-						<TouchableOpacity
+						<View
 							style={{
-								height: 48,
-								borderRadius: 6,
-								backgroundColor: '#296bc8',
-								marginHorizontal: '5%',
-								justifyContent: 'center',
-								alignItems: 'center',
-								marginVertical: hp('3%')
+								flex: 1,
+								...ifIphoneX(
+									{
+										marginTop: hp('3%'),
+										marginBottom: hp('1.5%')
+									},
+									{
+										marginTop: hp('5%'),
+										marginBottom: hp('1.5%')
+									}
+								),
+								marginTop: hp('3%'),
+								marginBottom: hp('1.5%')
 							}}
 						>
-							<Text
+							<TouchableOpacity
 								style={{
-									color: '#ffffff',
-									fontFamily: 'Nunito',
-									fontSize: 16,
-									fontWeight: '400',
-									letterSpacing: 0.4
+									height: 48,
+									borderRadius: 6,
+									backgroundColor: '#296bc8',
+									marginHorizontal: '5%',
+									justifyContent: 'center',
+									alignItems: 'center'
 								}}
 							>
-								Update
-							</Text>
-						</TouchableOpacity>
+								<Text
+									style={{
+										color: '#ffffff',
+										fontFamily: 'Nunito',
+										fontSize: 16,
+										fontWeight: '400',
+										letterSpacing: 0.4
+									}}
+								>
+									Update
+								</Text>
+							</TouchableOpacity>
+						</View>
 					</View>
 				</KeyboardAwareScrollView>
 			</View>
